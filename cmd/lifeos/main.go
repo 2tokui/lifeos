@@ -11,7 +11,7 @@ func main() {
 		w.Write([]byte("haiii"))
 	})
 
-	log.Println("Starting server at :1337")
+	log.Println("starting server at :1337")
 	log.Fatal(http.ListenAndServe(":1337", nil))
 }
 
