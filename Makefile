@@ -6,6 +6,9 @@ build-windows:
 
 build: build-linux build-windows
 
+r: build-linux
+	@./lifeos
+
 run: build
 	@./lifeos
 

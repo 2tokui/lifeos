@@ -1,0 +1,9 @@
+-- up
+CREATE TABLE "Mood" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"name"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+-- down
+DROP TABLE "Mood";
+

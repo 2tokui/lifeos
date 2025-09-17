@@ -1,3 +1,6 @@
+lifeos.db
+lifeos.db-shm
+lifeos.db-wal
 lifeos
 lifeos.exe
 !cmd/lifeos/
