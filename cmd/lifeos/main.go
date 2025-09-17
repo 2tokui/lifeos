@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
 	"net"
@@ -121,7 +122,9 @@ func main() {
 	DB = db
 	initDB()
 
-	upgrader := websocket.Upgrader{}
+	upgrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
 
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -129,6 +132,17 @@ func main() {
 			ServerIP: ipv4,
 		}
 		page.Execute(w, data)
+	})
+
+	http.HandleFunc("POST /addActivity", func(w http.ResponseWriter, r *http.Request) {
+		err := r.ParseForm()
+		if err != nil {
+			log.Println(err)
+			w.Write([]byte(err.Error()))
+		}
+		taskID := r.FormValue("task_id")
+		fmt.Println(taskID)
+
 	})
 
 	http.HandleFunc("GET /websocket", func(w http.ResponseWriter, r *http.Request) {
